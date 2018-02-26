@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Edit Contact</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/default.css" />
+
+</head>
+<body>
+<div class="main_wrapper">
+    <div class="wrap">
+        <form action="#" th:action="@{/edit}" th:object="${updateContact}" method="post">
+            <input type="hidden" th:field="*{id}" />
+            <input type="hidden" th:field="*{user_name}" />
+            <div class="inpt">
+                <label class="control-label">Name</label>
+                <input class="form-control" type="text"  th:field="*{name}" placeholder="Name" required="required"/>
+            </div>
+            <div class="inpt">
+                <label class="control-label">Tel. Number</label>
+                <input class="form-control" type="text" th:field="*{tel_number}" placeholder="Tel. Number" required="required"/>
+            </div>
+            <div class="inpt">
+                <label class="control-label">Skype</label>
+                <input class="form-control"  type="text" th:field="*{skype}" placeholder="Skype"/>
+            </div>
+            <div class="buttons_">
+                <div>
+                    <input type="submit" class="btn btn-primary" value="Save" />
+                    <input class="btn btn-primary" type="reset" value="Reset" />
+                </div>
+
+                <a th:href="@{contacts}"><input class="btn btn-primary" type="button" value="Back"/></a>
+            </div>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

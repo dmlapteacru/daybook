@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/contacts.css" />
+
+</head>
+<body>
+    <form th:action="@{/logout}" method="post" class="logout_btn">
+
+        <input class="btn btn-danger" type="submit" value="Logout"/>
+        <div class="time-date">
+            <p th:text="${#dates.format(#dates.createNow(), 'HH:mm , dd MMMMMMMMM yyyy')}"></p>
+            <!--<p th:text="${#dates.format(#dates.createNow(), 'dd MMMMMMMMM yyyy')}"></p>-->
+        </div>
+        <div class="user">
+            <p th:text="'Hi , ' + ${username}"></p>
+        </div>
+    </form>
+    <div class="wrapper_cont">
+        <div class="contacts_list">
+            <label>Contacts</label>
+            <table class="table" style="width: 70%;">
+                    <tr>
+                        <th style="width: 20%;">NAME</th>
+                        <th style="width: 25%;">TEL. NUMBER</th>
+                        <th style="width: 60%;">SKYPE</th>
+                        <th></th>
+                        <th></th>
+                        <th><a th:href="@{edit?(id=null)}"><img th:src="@{/img/add_blue.png}" class="add-icon"/></a></th>
+                    </tr>
+            </table>
+            <div class="over_wrapper">
+                <table class="table" style="width: 88%;">
+                    <tr th:each="contact : ${contactsList}">
+                        <td th:text="${contact.name}" style="width: 20%;"></td>
+                        <td th:text="${contact.tel_number}" style="width: 25%;"></td>
+                        <td th:text="${contact.skype}" style="width: 60%;"></td>
+                        <td><a th:href="@{call?(skype=${contact.skype})}">call</a></td>
+                        <td>
+                            <a th:href="@{edit?(id=${contact.id})}"><img th:src="@{/img/edit_icon.png}" class="edit-icon"/></a>
+                        </td>
+                        <td>
+                            <a th:href="@{delete?(id=${contact.id})}"><img th:src="@{/img/Delete_Icon.png}" class="delete-icon"/></a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+        </div>
+        <div class="notes">
+            <label>Quick Notes</label>
+            <textarea class="quick_notes" placeholder="Enter notes"></textarea>
+        </div>
+    </div>
+
+</body>
+</html>
